@@ -26,11 +26,11 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @GetMapping
-    public Flux<List<ParameterResponse>> getAllParameters() {
-        return Flux.just(parameterService.getAllParameters())
-                .map(parameters -> {
-                    List<ParameterResponse> parameterResponses = parameterMapper.mapParametersToResponses(parameters);
-                    return parameterResponses;
+    public Flux<ResponseEntity<ParameterResponse>> getAllParameters() {
+        return Flux.fromIterable(parameterService.getAllParameters())
+                .map(parameter -> {
+                    ParameterResponse parameterResponse = parameterMapper.parameterToParameterResponse(parameter);
+                    return ResponseEntity.ok(parameterResponse);
                 });
     }
 

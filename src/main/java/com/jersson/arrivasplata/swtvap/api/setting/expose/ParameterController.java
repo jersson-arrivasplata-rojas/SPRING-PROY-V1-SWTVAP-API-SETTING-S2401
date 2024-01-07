@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface ParameterController {
-    Flux<List<ParameterResponse>> getAllParameters();
+    Flux<ResponseEntity<ParameterResponse>> getAllParameters();
 
     Mono<ResponseEntity<ParameterResponse>> getParameterById(Long id);
 
