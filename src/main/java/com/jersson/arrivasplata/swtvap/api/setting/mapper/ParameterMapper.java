@@ -6,10 +6,11 @@ import com.jersson.arrivasplata.swtvap.api.setting.model.ParameterResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ParameterMapper {
     ParameterMapper INSTANCE = Mappers.getMapper(ParameterMapper.class);
 

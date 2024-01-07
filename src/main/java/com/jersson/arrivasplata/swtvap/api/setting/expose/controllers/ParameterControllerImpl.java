@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/parameters")
+@RequestMapping(value = "/api/parameters", produces = "application/vnd.swtvap-api-parameter.v1+json")
 public class ParameterControllerImpl implements ParameterController {
     private final ParameterService parameterService;
     private final ParameterMapper parameterMapper;

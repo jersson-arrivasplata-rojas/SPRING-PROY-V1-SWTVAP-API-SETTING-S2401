@@ -21,7 +21,7 @@ public class SecurityConfiguration {
     private String issuerUri;
 
     private static final String[] SECURITY_MATCHER_LIST = {
-            "/api/settings/**"
+            "/api/parameters/**"
     };
 
     private static final String[] WHITE_LIST = {
