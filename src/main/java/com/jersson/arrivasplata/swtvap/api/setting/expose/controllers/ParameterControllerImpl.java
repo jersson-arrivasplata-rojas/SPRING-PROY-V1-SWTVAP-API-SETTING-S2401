@@ -6,13 +6,14 @@ import com.jersson.arrivasplata.swtvap.api.setting.mapper.ParameterMapper;
 import com.jersson.arrivasplata.swtvap.api.setting.model.Parameter;
 import com.jersson.arrivasplata.swtvap.api.setting.model.ParameterRequest;
 import com.jersson.arrivasplata.swtvap.api.setting.model.ParameterResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/parameters", produces = "application/vnd.swtvap-api-parameter.v1+json")
 public class ParameterControllerImpl implements ParameterController {
@@ -25,6 +26,7 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Flux<ResponseEntity<ParameterResponse>> getAllParameters() {
         return Flux.fromIterable(parameterService.getAllParameters())
                 .map(parameter -> {
@@ -34,6 +36,7 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<ParameterResponse>> getParameterById(@PathVariable Long id) {
         return Mono.just(parameterService.getParameterById(id))
                 .map(parameter -> {
@@ -44,6 +47,7 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<ParameterResponse>> createParameter(@RequestBody ParameterRequest parameterRequest) {
         Parameter parameter = parameterMapper.parameterRequestToParameter(parameterRequest);
 
@@ -55,6 +59,7 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<ParameterResponse>> updateParameter(@PathVariable Long id, @RequestBody ParameterRequest parameterRequest) {
         Parameter parameter = parameterMapper.parameterRequestToParameter(parameterRequest);
 
@@ -67,6 +72,7 @@ public class ParameterControllerImpl implements ParameterController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<Void>> deleteParameter(@PathVariable Long id) {
         parameterService.deleteParameterById(id);
         return Mono.just(ResponseEntity.noContent().build());

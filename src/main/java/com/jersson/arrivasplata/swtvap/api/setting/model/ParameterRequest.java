@@ -1,11 +1,11 @@
 package com.jersson.arrivasplata.swtvap.api.setting.model;
 
 import com.jersson.arrivasplata.swtvap.api.setting.enums.Status;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class ParameterRequest {
     private Long id;
     private Long parentId;
