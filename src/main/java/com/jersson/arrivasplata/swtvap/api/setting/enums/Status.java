@@ -1,7 +1,7 @@
 package com.jersson.arrivasplata.swtvap.api.setting.enums;
 
 public enum Status {
-    ACTIVE,
     INACTIVE,
+    ACTIVE,
     // Otros estados que puedan existir
 }

@@ -27,54 +27,53 @@ public class ParameterControllerImpl implements ParameterController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Flux<ResponseEntity<ParameterResponse>> getAllParameters() {
+    public Flux<ParameterResponse> getAllParameters() {
         return Flux.fromIterable(parameterService.getAllParameters())
                 .map(parameter -> {
                     ParameterResponse parameterResponse = parameterMapper.parameterToParameterResponse(parameter);
-                    return ResponseEntity.ok(parameterResponse);
+                    return parameterResponse;
                 });
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ResponseEntity<ParameterResponse>> getParameterById(@PathVariable Long id) {
+    public Mono<ParameterResponse> getParameterById(@PathVariable Long id) {
         return Mono.just(parameterService.getParameterById(id))
                 .map(parameter -> {
                     ParameterResponse parameterResponse = parameterMapper.parameterToParameterResponse(parameter);
-                    return ResponseEntity.ok(parameterResponse);
+                    return parameterResponse;
                 })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .defaultIfEmpty(new ParameterResponse());
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<ResponseEntity<ParameterResponse>> createParameter(@RequestBody ParameterRequest parameterRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<ParameterResponse> createParameter(@RequestBody ParameterRequest parameterRequest) {
         Parameter parameter = parameterMapper.parameterRequestToParameter(parameterRequest);
 
         return Mono.just(parameterService.createParameter(parameter))
                 .map(newParameter -> {
                     ParameterResponse parameterResponse = parameterMapper.parameterToParameterResponse(newParameter);
-                    return ResponseEntity.status(HttpStatus.CREATED).body(parameterResponse);
+                    return parameterResponse;
                 });
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ResponseEntity<ParameterResponse>> updateParameter(@PathVariable Long id, @RequestBody ParameterRequest parameterRequest) {
+    public Mono<ParameterResponse> updateParameter(@PathVariable Long id, @RequestBody ParameterRequest parameterRequest) {
         Parameter parameter = parameterMapper.parameterRequestToParameter(parameterRequest);
 
         return Mono.just(parameterService.updateParameter(id, parameter))
                 .map(updatedParameter -> {
                     ParameterResponse parameterResponse = parameterMapper.parameterToParameterResponse(updatedParameter);
-                    return ResponseEntity.ok(parameterResponse);
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                    return parameterResponse;
+                });
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<ResponseEntity<Void>> deleteParameter(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteParameter(@PathVariable Long id) {
         parameterService.deleteParameterById(id);
-        return Mono.just(ResponseEntity.noContent().build());
+        return Mono.empty();
     }
 }

@@ -9,13 +9,13 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface ParameterController {
-    Flux<ResponseEntity<ParameterResponse>> getAllParameters();
+    Flux<ParameterResponse> getAllParameters();
 
-    Mono<ResponseEntity<ParameterResponse>> getParameterById(Long id);
+    Mono<ParameterResponse> getParameterById(Long id);
 
-    Mono<ResponseEntity<ParameterResponse>> createParameter(ParameterRequest parameter);
+    Mono<ParameterResponse> createParameter(ParameterRequest parameter);
 
-    Mono<ResponseEntity<ParameterResponse>> updateParameter(Long id, ParameterRequest updatedParameter);
+    Mono<ParameterResponse> updateParameter(Long id, ParameterRequest updatedParameter);
 
-    Mono<ResponseEntity<Void>> deleteParameter(Long id);
+    Mono<Void> deleteParameter(Long id);
 }

@@ -32,6 +32,6 @@ public class Parameter {
     @Column(name = "position")
     private Long position;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
 }
