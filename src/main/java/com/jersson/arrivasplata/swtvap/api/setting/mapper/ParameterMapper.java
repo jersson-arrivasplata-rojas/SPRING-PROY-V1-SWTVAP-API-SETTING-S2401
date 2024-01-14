@@ -15,11 +15,11 @@ public interface ParameterMapper {
     ParameterMapper INSTANCE = Mappers.getMapper(ParameterMapper.class);
 
     @Mapping(target = "id", ignore = true)
-    Parameter parameterRequestToParameter(ParameterRequest catalogRequest);
+    Parameter parameterRequestToParameter(ParameterRequest parameterRequest);
 
-    ParameterRequest parameterToParameterRequest(Parameter catalog);
+    ParameterRequest parameterToParameterRequest(Parameter parameter);
 
-    ParameterResponse parameterToParameterResponse(Parameter catalog);
+    ParameterResponse parameterToParameterResponse(Parameter parameter);
 
-    List<ParameterResponse> mapParametersToResponses(List<Parameter> catalogs);
+    List<ParameterResponse> mapParametersToResponses(List<Parameter> parameters);
 }
