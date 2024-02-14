@@ -14,11 +14,13 @@ import java.util.List;
 public interface ParameterMapper {
     ParameterMapper INSTANCE = Mappers.getMapper(ParameterMapper.class);
 
-    @Mapping(target = "id", ignore = true)
+    //@Mapping(target = "id", ignore = true)
+    @Mapping(source = "code", target = "code")
     Parameter parameterRequestToParameter(ParameterRequest parameterRequest);
 
     ParameterRequest parameterToParameterRequest(Parameter parameter);
 
+    @Mapping(source = "code", target = "code")
     ParameterResponse parameterToParameterResponse(Parameter parameter);
 
     List<ParameterResponse> mapParametersToResponses(List<Parameter> parameters);
