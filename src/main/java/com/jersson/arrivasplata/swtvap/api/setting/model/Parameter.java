@@ -26,7 +26,7 @@ public class Parameter {
     @Column(name = "group_id")
     private Long groupId;
 
-    @Column(length = 250)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "TEXT")
