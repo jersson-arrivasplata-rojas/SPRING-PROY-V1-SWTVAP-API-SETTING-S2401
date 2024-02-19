@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "swtvap_parameters")
@@ -40,4 +42,7 @@ public class Parameter {
 
     @Enumerated(EnumType.ORDINAL)
     private Status status;
+
+    @Column(name = "deleted_at")
+    private LocalDate deletedAt;
 }

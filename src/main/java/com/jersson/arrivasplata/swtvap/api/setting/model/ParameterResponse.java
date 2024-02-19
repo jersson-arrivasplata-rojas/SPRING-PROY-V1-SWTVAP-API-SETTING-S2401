@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Data
 public class ParameterResponse {
     private Long id;
@@ -15,4 +17,5 @@ public class ParameterResponse {
     private String code;
     private Long position;
     private Status status;
+    private LocalDate deletedAt;
 }
