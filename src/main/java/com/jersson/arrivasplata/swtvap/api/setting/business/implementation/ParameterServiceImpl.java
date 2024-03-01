@@ -1,12 +1,15 @@
 package com.jersson.arrivasplata.swtvap.api.setting.business.implementation;
 
 import com.jersson.arrivasplata.swtvap.api.setting.business.service.ParameterService;
+import com.jersson.arrivasplata.swtvap.api.setting.exception.CustomException;
 import com.jersson.arrivasplata.swtvap.api.setting.model.Parameter;
 import com.jersson.arrivasplata.swtvap.api.setting.repository.ParameterRepository;
+import com.jersson.arrivasplata.swtvap.api.setting.util.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ParameterServiceImpl implements ParameterService {
@@ -35,6 +38,14 @@ public class ParameterServiceImpl implements ParameterService {
     }
 
     public void deleteParameterById(Long id) {
-        parameterRepository.deleteById(id);
+
+        Optional<Parameter> parameterOptional = parameterRepository.findById(id);
+        if (!parameterOptional.isPresent()) {
+            throw new CustomException("Parameter not found with id: " + id);
+        }
+
+        Parameter parameter = parameterOptional.get();
+        parameter.setDeletedAt(Common.builder().build().getCurrentDate());
+        parameterRepository.save(parameter);
     }
 }
