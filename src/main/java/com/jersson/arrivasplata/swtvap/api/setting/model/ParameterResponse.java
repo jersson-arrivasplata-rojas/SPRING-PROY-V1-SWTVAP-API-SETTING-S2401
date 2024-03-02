@@ -14,6 +14,8 @@ public class ParameterResponse {
     private Long groupId;
     private String description;
     private String value;
+    private String value1;
+    private String value2;
     private String code;
     private Long position;
     private Status status;

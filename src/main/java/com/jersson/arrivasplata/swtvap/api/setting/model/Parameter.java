@@ -34,6 +34,12 @@ public class Parameter {
     @Column(columnDefinition = "TEXT")
     private String value;
 
+    @Column(columnDefinition = "TEXT")
+    private String value1;
+
+    @Column(columnDefinition = "TEXT")
+    private String value2;
+
     @Column(length = 50)
     private String code;
 
