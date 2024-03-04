@@ -25,8 +25,7 @@ public class SecurityConfiguration {
     };
 
     private static final String[] WHITE_LIST = {
-            "/swtvap-api-setting/v3/api-docs",
-            "/api/parameters/**"
+            "/swtvap-api-setting/v3/api-docs"
     };
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity httpSecurity) {
